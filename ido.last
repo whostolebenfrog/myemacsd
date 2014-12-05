@@ -1,0 +1,55 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/bgriffit/workspace/ditto/test/ditto/" . "unit/")
+ ("/Users/bgriffit/workspace/ditto/test/" . "ditto/")
+ ("/Users/bgriffit/workspace/ditto/src/" . "ditto/")
+ ("/Users/bgriffit/workspace/ditto/" . "src/")
+ ("/Users/bgriffit/workspace/" . "ditto/")
+ ("/Users/bgriffit/" . "workspace/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/bgriffit/workspace/ditto/src/ditto/"
+ "/Users/bgriffit/workspace/ditto/test/ditto/unit/"
+ "/Users/bgriffit/workspace/ditto/"
+ "/Users/bgriffit/workspace/ditto/resources/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "awsclient.clj"
+ "setup.clj"
+ "web.clj"
+ "bake_service_ami.clj"
+ "project.clj"
+ "packer.clj"
+ "logback.xml"
+ "bake_common.clj"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/bgriffit/workspace/ditto/src/ditto/" (21633 45931 0 0) "yum.clj" "web.clj" "setup.clj" "scheduler.clj" "rewrite.clj" "public_ami.clj" "pokemon.clj" "packer.clj" "onix.clj" "nokia.clj" "entertainment_ami.clj" "bake_service_ami.clj" "bake_common.clj" "awsclient.clj" "../" "./")
+
+ ("/Users/bgriffit/workspace/ditto/" (21633 33135 0 0) "test/" "target/" "src/" "shared/" "scripts/" "resources/" "release.sh" "README.md" "puppet/" "project.clj" "ami-scripts/" "all" ".nrepl-port" ".midje.clj" ".lein-repl-history" ".lein-env" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/bgriffit/" (21633 46810 0 0) "workspace/" "Public/" "Pictures/" "Music/" "Movies/" "Library/" "Downloads/" "Documents/" "Desktop/" "bin/" "Applications/" ".viminfo" ".Trash/" ".smex-items" ".m2/" ".live-packs/" ".lein/" ".emacs.d/" ".emacs-live.el" ".DS_Store" ".CFUserTextEncoding" ".bash_profile" ".bash_history" "../" "./")
+
+ ("/Users/bgriffit/workspace/ditto/test/ditto/unit/" (21631 16211 0 0) "yum.clj" "web.clj" "scheduler.clj" "public_ami.clj" "onix.clj" "nokia.clj" "entertainment_ami.clj" "bake_service_ami.clj" "bake_common.clj" "awsclient.clj" ".#bake_service_ami.clj" "../" "./")
+
+ ("/Users/bgriffit/workspace/ditto/test/ditto/" (21631 7422 0 0) "unit/" "../" "./")
+
+ ("/Users/bgriffit/workspace/ditto/test/" (21631 7422 0 0) "ditto/" "../" "./")
+
+ ("/Users/bgriffit/workspace/ditto/resources/" (21631 11632 0 0) "logback.xml" "../" "./")
+
+ ("/Users/bgriffit/workspace/ditto/src/" (21631 7422 0 0) "ditto/" "../" "./")
+
+ ("/Users/bgriffit/workspace/" (21631 7421 0 0) "ditto/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
