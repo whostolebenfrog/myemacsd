@@ -225,3 +225,23 @@
   (load custom-file))
 
 (message "\n\n Pack loading completed. Your Emacs is Live...\n\n")
+
+;; evil mode
+(add-to-list 'load-path "~/.emacs.d/evil") 
+(require 'evil)
+(evil-mode 1)
+
+;; General evil plugins
+(add-to-list 'load-path "~/.emacs.d/small-plugins")
+
+;; evil numbers (inc and dec)
+(require 'evil-numbers)
+(define-key evil-normal-state-map (kbd "C-x a") 'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map (kbd "C-x x") 'evil-numbers/dec-at-pt)
+
+;; evil surround
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
+;; goto last change e.g. `.
+(require 'goto-last-change)
