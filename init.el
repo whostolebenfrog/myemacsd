@@ -245,3 +245,5 @@
 
 ;; goto last change e.g. `.
 (require 'goto-last-change)
+
+(put 'downcase-region 'disabled nil)

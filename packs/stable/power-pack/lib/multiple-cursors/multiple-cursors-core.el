@@ -29,8 +29,6 @@
 
 (require 'rect)
 
-(defvar mc--read-char)
-
 (defface mc/cursor-face
   '((t (:inverse-video t)))
   "The face used for fake cursors"
@@ -132,6 +130,7 @@ highlights the entire width of the window."
                                   mark-ring
                                   mark-active
                                   yank-undo-function
+                                  kill-ring-yank-pointer
                                   autopair-action
                                   autopair-wrap-action
                                   er/history)
@@ -232,8 +231,6 @@ cursor with updated info."
 ;; Intercept some reading commands so you won't have to
 ;; answer them for every single cursor
 
-(defvar mc--read-char nil)
-(defvar multiple-cursors-mode nil)
 (defadvice read-char (around mc-support activate)
   (if (not multiple-cursors-mode)
       ad-do-it
@@ -241,7 +238,6 @@ cursor with updated info."
       (setq mc--read-char ad-do-it))
     (setq ad-return-value mc--read-char)))
 
-(defvar mc--read-quoted-char nil)
 (defadvice read-quoted-char (around mc-support activate)
   (if (not multiple-cursors-mode)
       ad-do-it
@@ -428,7 +424,7 @@ So you can paste it in later with `yank-rectangle'."
     (unless (mc--all-equal entries)
       (setq killed-rectangle entries))))
 
-(defvar mc/unsupported-minor-modes '(company-mode auto-complete-mode flyspell-mode jedi-mode)
+(defvar mc/unsupported-minor-modes '(auto-complete-mode flyspell-mode)
   "List of minor-modes that does not play well with multiple-cursors.
 They are temporarily disabled when multiple-cursors are active.")
 
@@ -596,9 +592,6 @@ for running commands with multiple cursors.")
                                      mc/skip-to-next-like-this
                                      mc/skip-to-previous-like-this
                                      rrm/switch-to-multiple-cursors
-                                     mc-hide-unmatched-lines-mode
-                                     hum/keyboard-quit
-                                     hum/unhide-invisible-overlays
                                      save-buffer
                                      ido-exit-minibuffer
                                      exit-minibuffer
@@ -686,7 +679,6 @@ for running commands with multiple cursors.")
                                         py-electric-backspace
                                         c-electric-backspace
                                         org-delete-backward-char
-                                        python-indent-dedent-line-backspace
                                         paredit-backward-delete
                                         autopair-backspace
                                         just-one-space

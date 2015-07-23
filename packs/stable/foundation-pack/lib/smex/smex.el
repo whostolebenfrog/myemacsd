@@ -41,7 +41,7 @@ Turn it off for minor speed improvements on older systems."
   :type 'boolean
   :group 'smex)
 
-(defcustom smex-save-file "~/.smex-items"
+(defcustom smex-save-file (locate-user-emacs-file "smex-items" ".smex-items")
   "File in which the smex state is saved between Emacs sessions.
 Variables stored are: `smex-data', `smex-history'.
 Must be set before initializing Smex."
@@ -190,10 +190,13 @@ Set this to nil to disable fuzzy matching."
       (setcdr (nthcdr (- smex-history-length 1) smex-history) nil))
   (mapc (lambda (command)
           (unless (eq command (caar smex-cache))
-            (let ((command-cell-position (smex-detect-position smex-cache (lambda (cell)
-                                                                (eq command (caar cell))))))
-              (if command-cell-position
-                (let ((command-cell (smex-remove-nth-cell command-cell-position smex-cache)))
+            (let ((command-cell-position (smex-detect-position
+                                          smex-cache
+                                          (lambda (cell)
+                                            (eq command (caar cell))))))
+              (when command-cell-position
+                (let ((command-cell (smex-remove-nth-cell
+                                     command-cell-position smex-cache)))
                   (setcdr command-cell smex-cache)
                   (setq smex-cache command-cell))))))
         (reverse smex-history)))
@@ -337,8 +340,10 @@ Set this to nil to disable fuzzy matching."
   (let* ((command-cell (nthcdr n smex-cache))
          (command-item (car command-cell))
          (command-count (cdr command-item)))
-    (let ((insert-at (smex-detect-position command-cell (lambda (cell)
-                       (smex-sorting-rules command-item (car cell))))))
+    (let ((insert-at (smex-detect-position
+                      command-cell
+                      (lambda (cell)
+                        (smex-sorting-rules command-item (car cell))))))
       ;; TODO: Should we handle the case of 'insert-at' being nil?
       ;; This will never happen in practice.
       (when (> insert-at 1)
@@ -388,8 +393,8 @@ Returns nil when reaching the end of the list."
 (defun smex-describe-function ()
   (interactive)
   (smex-do-with-selected-item (lambda (chosen)
-                           (describe-function chosen)
-                           (pop-to-buffer "*Help*"))))
+                                (describe-function chosen)
+                                (pop-to-buffer "*Help*"))))
 
 (defun smex-where-is ()
   (interactive)
@@ -408,7 +413,7 @@ Returns nil when reaching the end of the list."
   (map-keymap (lambda (binding element)
                 (if (and (listp element) (eq 'keymap (car element)))
                     (smex-parse-keymap element commands)
-                          ; Strings are commands, too. Reject them.
+                  ;; Strings are commands, too. Reject them.
                   (if (and (symbolp element) (commandp element))
                       (push element commands))))
               map))

@@ -135,7 +135,7 @@
                   (princ yas--version (current-buffer)))))
        (proj-plist
         `(,@(when (fboundp 'org-html-publish-to-html)
-              '(:publishing-function 'org-html-publish-to-html))
+              '(:publishing-function org-html-publish-to-html))
           :base-directory ,dir :publishing-directory ,dir
           :html-preamble
           ,(with-temp-buffer
@@ -161,7 +161,8 @@
 
 
 (provide 'yas-doc-helper)
-;;; yas-doc-helper.el ends here
 ;; Local Variables:
+;; indent-tabs-mode: nil
 ;; coding: utf-8
 ;; End:
+;;; yas-doc-helper.el ends here

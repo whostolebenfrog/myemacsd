@@ -27,24 +27,7 @@
 
 ;;; Code:
 
-(with-no-warnings (require 'cl))
-
-;; Dynamically scoped variables.
-;; TODO What actually sets this?
-(defvar haskell-config-use-cabal-dev)
-
-;; (defun haskell-package-conf-path-get (&optional project)
-;;   "Gets the user conf or the cabal-dev conf. Get the global conf elsewhere."
-;;   (if haskell-config-use-cabal-dev
-;;       (if project
-;;           (let* ((cabal-path (haskell-project-cabal-dir project)))
-;;             (format "%scabal-dev/packages-%s.conf/"
-;;                     (if (string-match "/$" cabal-path)
-;;                         cabal-path
-;;                       (concat cabal-path "/"))
-;;                     (haskell-ghc-version)))
-;;         (haskell-package-conf-user-path-get))
-;;     (haskell-package-conf-user-path-get)))
+(require 'cl-lib)
 
 (defun haskell-package-conf-user-path-get ()
   "Get the user conf path."
@@ -72,7 +55,7 @@
             name
             version))))
 
-(defstruct haskell-package "Haskell package object.")
+(cl-defstruct haskell-package "Haskell package object.")
 
 (defun haskell-package-parse (text)
   "Parse a package into a package object."
@@ -147,15 +130,11 @@
      (lambda (line)
        (string-match "^{?\\([a-zA-Z0-9-_]+\\)-\\([0-9.]+\\)}?$" line)
        (cons (match-string 1 line) (match-string 2 line)))
-     (delete-if
+     (cl-delete-if
       (lambda (line)
         (not (string-match "^{?[a-zA-Z0-9-_]+-[0-9.]+}?$" line)))
       lines))))
 
 (provide 'haskell-package)
-
-;; Local Variables:
-;; byte-compile-warnings: (not cl-functions)
-;; End:
 
 ;;; haskell-package.el ends here
