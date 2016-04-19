@@ -247,3 +247,27 @@
 (require 'goto-last-change)
 
 (put 'downcase-region 'disabled nil)
+
+;; evil leader 
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+
+;; Show the repl in a popwin (popup) buffer that can be closed with ctrl-g
+(defun popup-repl ()
+  (interactive)
+  (popwin:popup-buffer "*cider-repl localhost*"))
+
+;; Default the repl to opening in said popwin buffer
+(push '("*cider-repl localhost*" :position bottom) popwin:special-display-config)
+
+(evil-leader/set-key
+  "f" 'cljr-clean-ns
+  "c" 'cljr-cycle-coll
+  "q" 'cider-connect
+  "u" 'cljr-find-usages
+  "p" 'cljr-sort-project-dependencies
+  "r" 'popup-repl
+  "s" 'ispell-word
+  "j" 'cider-find-var
+  "t" 'cider-find-and-clean-repl-buffer)
