@@ -1,3 +1,4 @@
+
 <img src="http://github.com/downloads/overtone/emacs-live/emacs-live.png" />
 
 <!--
@@ -53,9 +54,9 @@ in battle against the evil friction of poor text editor workflows.
     "Power of the horse, full force!"
                  The Space Stallions.
 
-### Requires Emacs 24.3
+### Requires Emacs 24.4
 
-Emacs Live is only compatible with Emacs 24.3 and above.
+Emacs Live is only compatible with Emacs 24.4 and above.
 
 ### Easy Install
 
@@ -89,9 +90,20 @@ If you wish to hack with Clojure projects such as
 [Leiningen 2](https://github.com/technomancy/leiningen/wiki/Upgrading)
 and you're ready to roll.
 
-Simply start a repl in a Clojure project with `lein2 repl` and connect
-to it from Emacs with `M-x cider` (supplying the correct port) for full
-Emacs REPL/autocompletion joy.
+Make sure you create a profile in `~/.lein/profiles.clj`. It should
+contain the following:
+
+```
+{:user {
+ :plugins [[cider/cider-nrepl "0.9.1"]
+           [refactor-nrepl "1.1.0"]]
+ :dependencies [[org.clojure/tools.nrepl "0.2.7"]]
+ }}
+```
+
+Now you're ready to start a repl in a Clojure project with `lein repl`
+and connect to it from Emacs with `M-x cider-connect` (supplying the
+host and the correct port) for full Emacs REPL/autocompletion joy.
 
 ### Screenshots
 

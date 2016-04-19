@@ -19,6 +19,20 @@ Feature: Code Cycling
       (+ a b))
     """
 
+  Scenario: Cycling Privacy (from the front)
+    When I insert:
+    """
+    (defn- add [a b]
+      (+ a b))
+    """
+    And I press "C-M-b"
+    And I press "C-! cp"
+    Then I should see:
+    """
+    (defn add [a b]
+      (+ a b))
+    """
+
   Scenario: Cycling Privacy (defn -> defn ^:private)
     When I insert:
     """
@@ -143,30 +157,6 @@ Feature: Code Cycling
     (1 2 3)
     """
 
- Scenario: Cycling Strings and Keywords
-    When I insert:
-    """
-    "alice"
-    """
-    And I place the cursor before "alice"
-    And I press "C-! cs"
-    Then I should see:
-    """
-    :alice
-    """
-
- Scenario: Cycling Keywords and Strings
-    When I insert:
-    """
-    :alice
-    """
-    And I place the cursor before "ice"
-    And I press "C-! cs"
-    Then I should see:
-    """
-    "alice"
-    """
-
 Scenario: Cycling if to if-not, in inner if
    When I insert:
    """
@@ -205,4 +195,36 @@ Scenario: Cycling if-not to if, in outer if-not
      (if that
        (then AAA)
        (else BBB)))
+   """
+
+Scenario: Cycling thread-first to thread-last
+   When I insert:
+   """
+   (defn foo [coll]
+     (-> coll
+         (map inc)))
+   """
+   And I place the cursor after "(map"
+   And I press "C-! ct"
+   Then I should see:
+   """
+   (defn foo [coll]
+     (->> coll
+          (map inc)))
+   """
+
+Scenario: Cycling thread-last to thread-first
+   When I insert:
+   """
+   (defn foo []
+     (-> {}
+         (->> (assoc :bar 1))))
+   """
+   And I place the cursor after "(assoc"
+   And I press "C-! ct"
+   Then I should see:
+   """
+   (defn foo []
+     (-> {}
+         (-> (assoc :bar 1))))
    """

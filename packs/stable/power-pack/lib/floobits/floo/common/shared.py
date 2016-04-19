@@ -8,6 +8,7 @@ AUTH = {}
 
 DEBUG = False
 SOCK_DEBUG = False
+SOCK_SINGLE_READ = False
 
 EXPERT_MODE = False
 
@@ -39,6 +40,7 @@ WORKSPACE_WINDOW = None
 
 PERMS = []
 FOLLOW_MODE = False
+FOLLOW_USERS = set()
 SPLIT_MODE = False
 
 AUTO_GENERATED_ACCOUNT = False

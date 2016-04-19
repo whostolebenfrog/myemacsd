@@ -1,3 +1,13 @@
+(live-add-pack-lib "swiper")
+(require 'swiper)
+
+(live-add-pack-lib "with-editor")
+
+(require 'queue)
+(require 'seq)
+(live-add-pack-lib "dash")
+(require 'dash)
+
 (when (not (or (eq 'ms-dos system-type)
                (eq 'windows-nt system-type)))
   (live-load-config-file "auto-compile-conf.el"))
@@ -8,14 +18,15 @@
 
 (live-add-pack-lib "find-file-in-project")
 (require 'find-file-in-project)
-(live-add-pack-lib "dash")
-(require 'dash)
 (live-add-pack-lib "s")
 (require 's)
 (live-add-pack-lib "epl")
 (require 'epl)
 (live-add-pack-lib "pkg-info")
 (require 'pkg-info)
+
+
+(live-add-pack-lib "hydra")
 
 (live-load-config-file "backup-dir-conf.el")
 (live-load-config-file "util-fns.el")

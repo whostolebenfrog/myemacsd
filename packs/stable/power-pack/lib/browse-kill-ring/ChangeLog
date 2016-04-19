@@ -1,3 +1,57 @@
+2015-05-18 Andrew Burgess <andrew.burgess@embecosm.com>
+	Restore the mode name to "Kill Ring" if the filter regexp is
+	removed.
+
+2015-05-18 Andrew Burgess <andrew.burgess@embecosm.com>
+	The default for `browse-kill-ring-occur' is now to remove the
+	regexp that is currently in place, restoring all item in the
+	kill-ring to the display.  Previous regexp are still available in
+	the history ring if needed.
+
+2015-04-27 Andrew Burgess <andrew.burgess@embecosm.com>
+	Remove `browse-kill-ring-no-duplicates'.  This functionality was
+	never related to browsing the kill-ring, and would be better moved
+	in to a different package.
+
+2015-01-02 Andrew Burgess <andrew.burgess@embecosm.com>
+	Unify tail of `browse-kill-ring-finish' and
+	`browse-kill-ring-abort' to increase code reuse.  Improve use of
+	`brose-kill-ring-edit-target' to track when the user is making an
+	edit.
+
+2014-11-04 Toon Claes <toon@tonotdo.com>
+	v2.0 release:
+	Legacy code is removed, README is converted and
+	all issues on GitHub are closed.
+
+2014-09-15 Andrew Burgess <andrew.burgess@embecosm.com>
+	When editing entries from the *Kill Ring* buffer, reducing the
+	entry to the empty string will cause the item to be deleted from
+	the kill-ring once the edit is complete.
+
+2014-09-11 Andrew Burgess <andrew.burgess@embecosm.com>
+	Fix for http://bugs.debian.org/224751, inhibit all read only
+	properties before trying to delete an entry from the *Kill Ring*
+	buffer.
+
+2014-09-08 Andrew Burgess <andrew.burgess@embecosm.com>
+	Fix bug in `browse-kill-ring-occur' due to change in parameters of
+	`browse-kill-ring-setup'.
+
+2014-09-07 Andrew Burgess <andrew.burgess@embecosm.com>
+	Perform the quit action early, causing the `*Kill Ring*' buffer to
+	close before inserting the item.  This gives a better user
+	experience when the inserted item is being highlighted, previously
+	the highlighting would keep the *Kill Ring* buffer around for 0.5
+	second acter the user has pressed the insert key, making it appear
+	that `browse-kill-ring' was slow to respond.
+
+2014-09-06 Andrew Burgess <andrew.burgess@embecosm.com>
+	Register a `kill-buffer-hook' to ensure that the preview is
+	removed even if the `*Kill Ring*' bufer is killed in an unexpected
+	way, that is, by not calling `browse-kill-ring-quit' but calling
+	`kill-buffer' directly.
+
 2014-09-03 Andrew Burgess <andrew.burgess@embecosm.com>
 	Disable the preview overlay before inserting the item from the
 	`kill-ring', then reenable once the item has been inserted, moving

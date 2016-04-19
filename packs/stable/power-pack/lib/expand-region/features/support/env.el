@@ -5,6 +5,9 @@
 
 (add-to-list 'load-path expand-region-root-path)
 
+(require 'undercover)
+(undercover "*.el")
+
 (require 'expand-region)
 (require 'espuds)
 (require 'ert)
@@ -23,3 +26,6 @@
  (deactivate-mark))
 
 (After)
+;; Local Variables:
+;; no-byte-compile: t
+;; End:

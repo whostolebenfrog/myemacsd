@@ -50,7 +50,7 @@
 ;;
 ;; add this to .emacs:
 ;;
-;;   (add-hook 'haskell-mode-hook 'turn-on-haskell-bot)
+;;   (add-hook 'haskell-mode-hook 'haskell-bot-mode)
 ;;
 ;;
 ;; Customisation:
@@ -69,6 +69,8 @@
 ;; `haskell-bot-'.
 
 ;;; Code:
+
+(require 'comint)
 
 (defgroup haskell-bot nil
   "Major mode for interacting with an inferior Bot session."
